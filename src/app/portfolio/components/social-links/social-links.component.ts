@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-social-links',
@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './social-links.component.css',
 })
 export class SocialLinksComponent {
+
+  readonly social = input.required();
 
 }

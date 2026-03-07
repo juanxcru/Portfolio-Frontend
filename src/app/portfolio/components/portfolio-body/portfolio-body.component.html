@@ -1,11 +1,11 @@
 <div class="min-h-screen bg-slate-950 text-slate-200 font-display">
   <app-navbar></app-navbar>
-@if(store._cvInfo(); as _cvInfo){
-  <app-hero [cvinfo]="_cvInfo" ></app-hero>
-  <app-about [cvinfo]="_cvInfo" ></app-about>
-  <app-experience [cvinfo]="_cvInfo" ></app-experience>
+@if(store.cvInfo(); as cvInfo){
+  <app-hero [cvinfo]="cvInfo" ></app-hero>
+  <app-about [cvinfo]="cvInfo" ></app-about>
+  <app-experience [cvinfo]="cvInfo" ></app-experience>
   <app-projects></app-projects>
-  <app-contact [cvinfo]="_cvInfo" ></app-contact>
+  <app-contact [cvinfo]="cvInfo" ></app-contact>
 }
 <app-footer></app-footer>
 </div>

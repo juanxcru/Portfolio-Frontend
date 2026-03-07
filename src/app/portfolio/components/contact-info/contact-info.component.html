@@ -1,7 +1,6 @@
 <div>
   <p class="text-slate-400 text-lg leading-relaxed mb-8">
-    I'm currently open to new opportunities and interesting projects. Whether you have a question,
-    want to collaborate, or just want to say hi, feel free to reach out!
+   
   </p>
   <div class="space-y-6">
     <div class="flex items-center gap-4">
@@ -42,7 +41,7 @@
         </svg>
       </div>
       <div>
-        <p class="text-sm text-slate-500">Location</p>
+        <p class="text-sm text-slate-500">{{ui().titles.location}}</p>
         <p id="location-display" class="text-white font-medium">Madrid, Spain</p>
       </div>
     </div>
@@ -60,16 +59,16 @@
         </svg>
       </div>
       <div>
-        <p class="text-sm text-slate-500">Availability</p>
-        <p class="text-white font-medium">Open to opportunities</p>
+        <p class="text-sm text-slate-500">{{ui().titles.available}}</p>
+        <p class="text-white font-medium"> </p>
       </div>
     </div>
   </div>
   <!-- Social Links -->
   <div class="mt-10">
-    <p class="text-sm text-slate-500 mb-4">Connect with me</p>
+    <p class="text-sm text-slate-500 mb-4">{{ui().actions.contactMe}}</p>
     <div class="flex">
-      <app-social-links></app-social-links>
+      <app-social-links [social]=""></app-social-links>
     </div>
   </div>
 </div>

@@ -2,24 +2,20 @@
   <div class="max-w-6xl mx-auto px-6">
     <div class="flex items-center gap-4 mb-12">
       <span class="font-mono-code text-emerald-400 text-sm">&lt;</span>
-      <h2 class="text-3xl font-bold text-center text-white">About Me</h2>
+      <h2 class="text-3xl font-bold text-center text-white">{{ui().sections.about}}</h2>
       <span class="font-mono-code text-emerald-400 text-sm">/&gt;</span>
       <div class="flex-1 h-px bg-slate-800"></div>
     </div>
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div>
         <p id="about-text" class="text-slate-400 leading-relaxed mb-6 text-justify">
-          @if(store._cvInfo(); as cvinfo){
-            {{ cvinfo.bio1}}
-          }@else {
-            {{ " N/A "}}
-          }
+         {{cvinfo().bio1}}
         </p>
         <p class="text-slate-400 leading-relaxed mb-6 text-justify">
-          I thrive in collaborative environments where I can learn from others and share my knowledge. I enjoy mentoring junior developers and contributing in whatever way I can. I'm always open to new challenges and opportunities to grow as a developer and as a person.
+          {{cvinfo().bio2}}
         </p>
         <p class="text-slate-400 leading-relaxed text-justify">
-          When I'm not coding, you'll find me diving (yes, I'm a certified scuba diver!), mentoring junior developers, or making music. I also have a passion for cooking and exploring new cuisines, which I find to be a great creative outlet outside of programming.
+          {{cvinfo().bio3}}
         </p>
       </div>
       <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
@@ -37,76 +33,49 @@
               d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
             />
           </svg>
-          Tech Stack 
+          {{ui().titles.stack}}
         </h3>
         <!-- ToDo: Make this a separate component -->
         <div class="grid grid-cols-2 gap-4">
           <div>
             <h4 class="text-sm font-mono-code text-emerald-400 mb-3">Languages</h4>
             <ul class="space-y-2 text-slate-400 text-sm">
-              <li class="flex items-center gap-2">
-                <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>Java
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>TypeScript
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>Python
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>C/C++
-              </li>
+              @for(lang of cvinfo().stack.languages; track $index){
+                <li class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                  {{lang}}
+                </li> 
+              }
             </ul>
           </div>
           <div>
             <h4 class="text-sm font-mono-code text-emerald-400 mb-3">Databases</h4>
             <ul class="space-y-2 text-slate-400 text-sm">
-              <li class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-violet-400 rounded-full"></span>PostgreSQL
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-violet-400 rounded-full"></span>MongoDB
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-violet-400 rounded-full"></span>Oracle
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-violet-400 rounded-full"></span>Elasticsearch
-              </li>
+              @for(db of cvinfo().stack.database; track $index){
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-violet-400 rounded-full"></span>{{db}}
+                </li>
+              }
             </ul>
           </div>
           <div>
             <h4 class="text-sm font-mono-code text-emerald-400 mb-3">Cloud &amp; DevOps</h4>
             <ul class="space-y-2 text-slate-400 text-sm">
+               @for(other of cvinfo().stack.other; track $index){
               <li class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>AWS / GCP
+                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>{{other}}
               </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>Docker / Kubernetes
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>CI/CD Pipelines
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>Terraform
-              </li>
+            }
             </ul>
           </div>
           <div>
             <h4 class="text-sm font-mono-code text-emerald-400 mb-3">Frameworks</h4>
             <ul class="space-y-2 text-slate-400 text-sm">
+               @for(framework of cvinfo().stack.frameworks; track $index){
               <li class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-pink-400 rounded-full"></span>Django / FastAPI
+                <span class="w-1.5 h-1.5 bg-pink-400 rounded-full"></span>{{framework}}
               </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-pink-400 rounded-full"></span>Express / NestJS
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-pink-400 rounded-full"></span>Spring Boot
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-pink-400 rounded-full"></span>gRPC
-              </li>
+            }
             </ul>
           </div>
         </div>

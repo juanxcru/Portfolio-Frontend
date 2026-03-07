@@ -5,13 +5,14 @@
         &lt;<span class="text-cyan-400">juan</span>/&gt;
       </a>
       <div class="hidden md:flex items-center gap-8">
-        <a routerLink="" fragment="about" class="nav-link text-slate-300 hover:text-white text-sm font-medium">About</a>
+        <a routerLink="" fragment="about" 
+          class="nav-link text-slate-300 hover:text-white text-sm font-medium">{{ui().sections.about}}</a>
         <a routerLink="" fragment="experience"
-          class="nav-link text-slate-300 hover:text-white text-sm font-medium">Experience</a>
+          class="nav-link text-slate-300 hover:text-white text-sm font-medium">{{ui().sections.experience}}</a>
         <a routerLink="" fragment="projects"
-          class="nav-link text-slate-300 hover:text-white text-sm font-medium">Projects</a>
+          class="nav-link text-slate-300 hover:text-white text-sm font-medium">{{ui().sections.projects}}</a>
         <a routerLink="" fragment="contact"
-          class="nav-link text-slate-300 hover:text-white text-sm font-medium">Contact</a>
+          class="nav-link text-slate-300 hover:text-white text-sm font-medium">{{ui().sections.contact}}</a>
       </div>
       
       <!-- <a routerLink="" fragment="contact"
@@ -20,7 +21,7 @@
       </a> -->
 
       <div class="inline-flex items-center rounded-full border border-slate-700/40 bg-slate-900/40 p-1 shadow-sm">
-        <button type="button" aria-label="Switch to English"
+        <button type="button"
           (click)="setLocale('en')"
           [class.bg-slate-100]="isEn()"
           [class.text-slate-900]="isEn()"
@@ -31,7 +32,7 @@
 
         <span class="mx-1 h-6 w-px bg-slate-700/50"></span>
 
-        <button type="button" aria-label="Cambiar a Español"
+        <button type="button"
           (click)="setLocale('es')"
           [class.bg-slate-100]="isEs()"
           [class.text-slate-900]="isEs()"

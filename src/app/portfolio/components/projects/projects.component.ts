@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProjectCardComponent } from '../project-card/project-card.component';
+import { BaseComponent } from '../base-component.component';
 
 @Component({
   selector: 'app-projects',
@@ -7,6 +8,6 @@ import { ProjectCardComponent } from '../project-card/project-card.component';
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css',
 })
-export class ProjectsComponent {
+export class ProjectsComponent  extends BaseComponent{
 
 }

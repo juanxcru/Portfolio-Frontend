@@ -1,6 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { LanguageService, Locale } from '../../services/language.service';
+import { BaseComponent } from '../base-component.component';
 
 @Component({
   selector: 'app-navbar',
@@ -8,9 +9,9 @@ import { LanguageService, Locale } from '../../services/language.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent {
+export class NavbarComponent extends BaseComponent{
   private readonly lang = inject(LanguageService);
-  readonly locale = this.lang._locale; // signal readonly
+  readonly locale = this.lang.locale; 
   readonly isEn = computed(() => this.locale() === 'en');
   readonly isEs = computed(() => this.locale() === 'es');
 

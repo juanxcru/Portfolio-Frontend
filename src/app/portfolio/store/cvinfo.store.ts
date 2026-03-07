@@ -18,7 +18,7 @@ export interface CvInfo {
     stack: {
         frameworks: string[];
         database: string[];
-        language: string[];
+        languages: string[];
         other: string[];
     };
     bio1: string;
@@ -43,15 +43,19 @@ export class CvInfoStore {
     private readonly http = inject(HttpClient);
     private readonly langService: LanguageService = inject(LanguageService);
 
-    readonly _cvInfo = signal<CvInfo | null>(null);
-    readonly _state = signal<LoadState>('idle');
+    private readonly _cvInfo = signal<CvInfo | null>(null);
+    readonly cvInfo = this._cvInfo.asReadonly();
+
+    private readonly _state = signal<LoadState>('idle');
+    readonly state = this._state.asReadonly();
+
     readonly isLoading = computed(() => this._state() === 'loading');
 
     private readonly memCache = new Map<Locale, CvInfo>();
 
     constructor() {
         effect(() => {
-            const locale = this.langService._locale();
+            const locale = this.langService.locale();
             this.loadForLocale(locale);
 
         });
@@ -66,11 +70,11 @@ export class CvInfoStore {
             return;
         }
 
-        const fromLs = this.readFromLocalStorage(locale);
+        const fromSs = this.readFromSessionStorage(locale);
 
-        if (fromLs) {
-            this._cvInfo.set(fromLs);
-            this.memCache.set(locale, fromLs);
+        if (fromSs) {
+            this._cvInfo.set(fromSs);
+            this.memCache.set(locale, fromSs);
             this._state.set('loaded');
             return;
         }
@@ -80,7 +84,7 @@ export class CvInfoStore {
         this.http.get<CvInfo>(`${backend}/info`).subscribe({
             next: (data) => {
                 this.memCache.set(locale, data);
-                this.writeToLocalStorage(locale, data);
+                this.writeToSessionStorage(locale, data);
                 this._cvInfo.set(data);
                 this._state.set('loaded');
             },
@@ -94,22 +98,22 @@ export class CvInfoStore {
 
 
 
-    private readFromLocalStorage(locale: Locale): CvInfo | null {
+    private readFromSessionStorage(locale: Locale): CvInfo | null {
         try {
-            const raw = localStorage.getItem(`portfolio.cvInfo.${locale}`);
+            const raw = sessionStorage.getItem(`portfolio.cvInfo.${locale}`);
             if (!raw) return null;
             return JSON.parse(raw) as CvInfo;
         } catch {
-            console.error('error when trying to get info from LS')
+            console.error('error when trying to get info from sessionStorage')
             return null;
         }
     }
 
-    private writeToLocalStorage(locale: Locale, data: CvInfo) {
+    private writeToSessionStorage(locale: Locale, data: CvInfo) {
         try {
-            localStorage.setItem(`portfolio.cvInfo.${locale}`, JSON.stringify(data));
+            sessionStorage.setItem(`portfolio.cvInfo.${locale}`, JSON.stringify(data));
         } catch {
-            console.error('error when trying to write info to LS')
+            console.error('error when trying to write info to sessionStroage')
             return;
         }
     }

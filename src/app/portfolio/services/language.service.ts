@@ -1,15 +1,23 @@
 
-import { signal } from "@angular/core";
+import { computed, Injectable, signal } from "@angular/core";
+import { UI_TEXTS, UiTexts } from "./ui-texts";
 
 
 export type Locale = 'en' | 'es';
 
+@Injectable({providedIn: 'root'})
 export class LanguageService{
     /*
         not escalable for more languages :)
     */
     private readonly STORAGE_KEY = 'portfolio.locale';
-    readonly _locale = signal<Locale>(this._initialLocale());
+    private readonly _locale = signal<Locale>(this._initialLocale());
+    readonly locale = this._locale.asReadonly();
+
+    readonly ui = computed<UiTexts>(() => {
+        const locale = this.locale();
+        return UI_TEXTS[locale];
+    });
     
     // set (update) the lang in signal, and save in LS.
     public setLocale(locale: Locale){
@@ -23,11 +31,10 @@ export class LanguageService{
         return;
     }
 
-
-    // seek in localstorage/browser for saved locale (lang) if not our langs, return default.
+    // seek in session storage/browser for saved locale (lang) if not our langs, return default.
     private _initialLocale(): Locale{
 
-        const savedLocale = localStorage.getItem(this.STORAGE_KEY);
+        const savedLocale = sessionStorage.getItem(this.STORAGE_KEY);
         if (savedLocale === 'en' || savedLocale === 'es') {
             return savedLocale;
         }
@@ -37,6 +44,10 @@ export class LanguageService{
         
         //return 'en';
      }
+
+
+    
+
     
     
     

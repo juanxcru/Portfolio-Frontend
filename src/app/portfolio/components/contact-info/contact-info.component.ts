@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { SocialLinksComponent } from "../social-links/social-links.component";
+import { BaseComponent } from '../base-component.component';
+import { CvInfo } from '../../store/cvinfo.store';
 
 @Component({
   selector: 'app-contact-info',
@@ -7,6 +9,6 @@ import { SocialLinksComponent } from "../social-links/social-links.component";
   templateUrl: './contact-info.component.html',
   styleUrl: './contact-info.component.css',
 })
-export class ContactInfoComponent {
+export class ContactInfoComponent extends BaseComponent {
 
 }

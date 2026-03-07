@@ -1,5 +1,6 @@
-import { Component, inject, input } from '@angular/core';
-import { CvInfo, CvInfoStore } from '../../store/cvinfo.store';
+import { Component, input } from '@angular/core';
+import { CvInfo } from '../../store/cvinfo.store';
+import { BaseComponent } from '../base-component.component';
 
 @Component({
   selector: 'app-about',
@@ -7,9 +8,7 @@ import { CvInfo, CvInfoStore } from '../../store/cvinfo.store';
   templateUrl: './about.component.html',
   styleUrl: './about.component.css',
 })
-export class AboutComponent {
+export class AboutComponent extends BaseComponent{
 
     cvinfo = input.required<CvInfo>();
-
-
 }

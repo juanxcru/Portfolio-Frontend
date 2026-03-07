@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BaseComponent } from '../base-component.component';
 
 @Component({
   selector: 'app-contact-form',
@@ -6,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './contact-form.component.html',
   styleUrl: './contact-form.component.css',
 })
-export class ContactFormComponent {
+export class ContactFormComponent extends BaseComponent {
 
 }
