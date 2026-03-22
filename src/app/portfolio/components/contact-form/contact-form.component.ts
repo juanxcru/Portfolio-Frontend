@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { BaseComponent } from '../base-component.component';
 
 @Component({
@@ -8,5 +8,5 @@ import { BaseComponent } from '../base-component.component';
   styleUrl: './contact-form.component.css',
 })
 export class ContactFormComponent extends BaseComponent {
-
+  readonly email = input.required();
 }

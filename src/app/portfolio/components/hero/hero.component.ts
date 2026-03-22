@@ -17,8 +17,6 @@ export class HeroComponent extends BaseComponent {
   readonly socialLinks = computed(() => {
     return  {
       github: this.cvinfo().github,
-      linkedin: this.cvinfo().linkedin,
-      whatsapp: this.cvinfo().whatsapp,
       email: this.cvinfo().email 
     }
     

@@ -9,10 +9,10 @@ export interface CvInfo {
     title: string;
     subtitle: string;
     availability: string;
+    avail_short: string;
     cover_letter: string;
     location: string;
     email: string;
-    whatsapp: string;
     linkedin: string;
     github: string;
     stack: {

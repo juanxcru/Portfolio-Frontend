@@ -1,6 +1,6 @@
 <div>
   <p class="text-slate-400 text-lg leading-relaxed mb-8">
-   
+   {{this.contactInfo().availability}}
   </p>
   <div class="space-y-6">
     <div class="flex items-center gap-4">
@@ -18,7 +18,7 @@
       </div>
       <div>
         <p class="text-sm text-slate-500">Email</p>
-        <p id="email-display" class="text-white font-medium">juan@example.com</p>
+        <p id="email-display" class="text-white font-medium">{{this.contactInfo().email}}</p>
       </div>
     </div>
     <div class="flex items-center gap-4">
@@ -42,7 +42,7 @@
       </div>
       <div>
         <p class="text-sm text-slate-500">{{ui().titles.location}}</p>
-        <p id="location-display" class="text-white font-medium">Madrid, Spain</p>
+        <p id="location-display" class="text-white font-medium">{{this.contactInfo().location}}</p>
       </div>
     </div>
     <div class="flex items-center gap-4">
@@ -60,9 +60,9 @@
       </div>
       <div>
         <p class="text-sm text-slate-500">{{ui().titles.available}}</p>
-        <p class="text-white font-medium"> </p>
+        <p class="text-white font-medium"> {{this.contactInfo().avail_short}}</p>
       </div>
-    </div>
+    </div>    
   </div>
   <!-- Social Links -->
   <div class="mt-10">
