@@ -21,13 +21,13 @@
       <span class="text-white">{{ui().titles.iam}}</span> <span class="gradient-text">Juan Di Nardo</span>
     </h1>
     <h2 id="hero-title" class="text-2xl md:text-3xl text-slate-400 font-medium mb-6">
-      {{cvinfo().title}}
+      {{titles().title}}
     </h2>
     <p id="hero-subtitle" class="text-lg text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-      {{cvinfo().subtitle}}
+      {{titles().subtitle}}
     </p>
     <!-- Tech Stack Pills -->
-    <app-tech-pill [stack]="cvinfo().stack"></app-tech-pill>
+    <app-tech-pill [stack]="stack()"></app-tech-pill>
 
     <div class="flex flex-wrap justify-center gap-4"> <!-- Buttons -->
       <a href="#projects"
@@ -44,7 +44,7 @@
       </button>
     </div>
     <div class="mt-12">
-      <app-social-links [social]="this.socialLinks()"  ></app-social-links>
+      <app-social-links [socialLinks]="socialLinks()" ></app-social-links>
     </div>
 
   </div>

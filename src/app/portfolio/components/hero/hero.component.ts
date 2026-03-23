@@ -1,8 +1,8 @@
 import { Component, computed, input } from '@angular/core';
 import { SocialLinksComponent } from "../social-links/social-links.component";
 import { TechPillComponent } from '../tech-pill/tech-pill.component';
-import { CvInfo } from '../../store/cvinfo.store';
 import { BaseComponent } from '../base-component.component';
+import { SocialLinks, Stack, Titles } from '../portfolio-body/portfolio-viewmodel-types';
 
 @Component({
   selector: 'app-hero',
@@ -12,14 +12,8 @@ import { BaseComponent } from '../base-component.component';
 })
 export class HeroComponent extends BaseComponent {
 
-  readonly cvinfo = input.required<CvInfo>();
-
-  readonly socialLinks = computed(() => {
-    return  {
-      github: this.cvinfo().github,
-      email: this.cvinfo().email 
-    }
-    
-  });
+  readonly stack = input.required<Stack>();
+  readonly titles = input.required<Titles>();
+  readonly socialLinks = input.required<SocialLinks>();
 
 }
