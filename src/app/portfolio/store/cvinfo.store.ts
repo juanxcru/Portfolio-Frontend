@@ -46,7 +46,7 @@ export class CvInfoStore {
     private readonly _cvInfo = signal<CvInfo | null>(null);
     readonly cvInfo = this._cvInfo.asReadonly();
 
-    private readonly _state = signal<LoadState>('idle');
+    private readonly _state = signal<LoadState>('loading');
     readonly state = this._state.asReadonly();
 
     readonly isLoading = computed(() => this._state() === 'loading');
