@@ -3,13 +3,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { PortfolioBodyComponent } from './portfolio/components/portfolio-body/portfolio-body.component';
 
 export const routes: Routes = [
-  {path: '**', redirectTo: 'v2' },
-  {
-    path: 'v2',
+  {path: '**',
     component: PortfolioBodyComponent
-  },
-  {
-    path: 'home',
-    component: LandingComponent
   }
 ];

@@ -1,28 +1,26 @@
 <div id="error-container"
-    class="hidden fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-sm flex items-center justify-center p-4">
+    class="flex bg-slate-950/95 backdrop-blur-sm flex items-center justify-center min-h-[60vh] p-4">
     <div class="max-w-md w-full">
         <div class="bg-slate-900/80 border border-red-500/30 rounded-2xl p-8 text-center">
             <div class="mb-6">
-                <div
-                    class="w-16 h-16 mx-auto bg-red-500/10 border border-red-500/30 rounded-full flex items-center justify-center mb-4">
-                    <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 9v2m0 4v2m.001-6H9m0 0h.001M15 9h.001M15 12h.001M9 15h.001M15 15h.001" />
-                    </svg>
+                <div class="w-16 h-16 mx-auto bg-red-500/10 border border-red-500/30 rounded-full flex items-center justify-center mb-4">
+                    <h1 class="text-3xl">⛔</h1>
                 </div>
-                <h2 class="text-2xl font-bold text-white mb-2">Oops! Something went wrong</h2>
-                <p class="text-slate-400 text-sm mb-6">We encountered an error loading your portfolio. Please try
-                    refreshing the page.</p>
-                <p id="error-message"
-                    class="text-red-400/70 text-xs font-mono-code mb-6 bg-slate-800/50 p-3 rounded-lg"></p>
+                <h2 class="text-2xl font-bold text-white mb-2">Oops! ¡Error!</h2>
+                <p class="text-slate-400 text-sm mb-6">
+                    Don't worry, be happy.
+                </p>
+                <p id="error-message" class="text-red-400/70 text-xs font-mono-code mb-6 bg-slate-800/50 p-3 rounded-lg">
+                404</p>
             </div>
-            <div class="space-y-3"><button onclick="location.reload()"
-                    class="w-full py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 rounded-lg font-semibold hover:opacity-90 transition-all">
-                    Refresh Page </button> <button
-                    onclick="document.getElementById('error-container').classList.add('hidden')"
-                    class="w-full py-2 bg-slate-800/50 border border-slate-700 text-slate-200 rounded-lg font-semibold hover:bg-slate-800 transition-all">
-                    Dismiss </button>
-            </div>
+            <!-- <div class="space-y-3">
+                <button class="w-full py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 rounded-lg font-semibold hover:opacity-90 transition-all">
+                    Refresh Page
+                </button>
+                <button class="w-full py-2 bg-slate-800/50 border border-slate-700 text-slate-200 rounded-lg font-semibold hover:bg-slate-800 transition-all">
+                    Dismiss
+                </button>
+            </div> -->
         </div>
     </div>
 </div>
