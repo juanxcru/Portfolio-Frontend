@@ -1,15 +1,11 @@
 import { Component, computed, input } from '@angular/core';
 import { ContactInfoComponent } from "../contact-info/contact-info.component";
 import { ContactFormComponent } from "../contact-form/contact-form.component";
-import { CvInfo } from '../../store/cvinfo.store';
 import { BaseComponent } from '../base-component.component';
+import { ContactInfo, SocialLinks } from '../portfolio-body/portfolio-viewmodel-types';
 
 
-export type ContactInfo = Pick<CvInfo, 
-                        'availability' |
-                        'avail_short'|
-                        'location'|
-                        'email'>;
+
 
 @Component({
   selector: 'app-contact',
@@ -18,14 +14,7 @@ export type ContactInfo = Pick<CvInfo,
   styleUrl: './contact.component.css',
 })
 export class ContactComponent extends BaseComponent {
-  cvinfo = input.required<CvInfo>();
-
-  readonly contactInfo = computed<ContactInfo>(() => ({
-    availability:  this.cvinfo().availability, 
-    avail_short : this.cvinfo().avail_short, 
-    location:  this.cvinfo().location,
-    email: this.cvinfo().email,
-    
-  }));
+  readonly contactInfo = input.required<ContactInfo>();
+  readonly socialLinks = input.required<SocialLinks>();
 
 }

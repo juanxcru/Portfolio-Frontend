@@ -9,13 +9,13 @@
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div>
         <p id="about-text" class="text-slate-400 leading-relaxed mb-6 text-justify">
-         {{cvinfo().bio1}}
+         {{bioData().bio1}}
         </p>
         <p class="text-slate-400 leading-relaxed mb-6 text-justify">
-          {{cvinfo().bio2}}
+          {{bioData().bio2}}
         </p>
         <p class="text-slate-400 leading-relaxed text-justify">
-          {{cvinfo().bio3}}
+          {{bioData().bio3}}
         </p>
       </div>
       <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
@@ -40,7 +40,7 @@
           <div>
             <h4 class="text-sm font-mono-code text-emerald-400 mb-3">Languages</h4>
             <ul class="space-y-2 text-slate-400 text-sm">
-              @for(lang of cvinfo().stack.languages; track $index){
+              @for(lang of stack().stack.languages; track $index){
                 <li class="flex items-center gap-2">
                   <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
                   {{lang}}
@@ -51,7 +51,7 @@
           <div>
             <h4 class="text-sm font-mono-code text-emerald-400 mb-3">Databases</h4>
             <ul class="space-y-2 text-slate-400 text-sm">
-              @for(db of cvinfo().stack.database; track $index){
+              @for(db of stack().stack.database; track $index){
                 <li class="flex items-center gap-2">
                   <span class="w-1.5 h-1.5 bg-violet-400 rounded-full"></span>{{db}}
                 </li>
@@ -61,7 +61,7 @@
           <div>
             <h4 class="text-sm font-mono-code text-emerald-400 mb-3">Cloud &amp; DevOps</h4>
             <ul class="space-y-2 text-slate-400 text-sm">
-               @for(other of cvinfo().stack.other; track $index){
+               @for(other of stack().stack.other; track $index){
               <li class="flex items-center gap-2">
                 <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>{{other}}
               </li>
@@ -71,7 +71,7 @@
           <div>
             <h4 class="text-sm font-mono-code text-emerald-400 mb-3">Frameworks</h4>
             <ul class="space-y-2 text-slate-400 text-sm">
-               @for(framework of cvinfo().stack.frameworks; track $index){
+               @for(framework of stack().stack.frameworks; track $index){
               <li class="flex items-center gap-2">
                 <span class="w-1.5 h-1.5 bg-pink-400 rounded-full"></span>{{framework}}
               </li>

@@ -19,7 +19,6 @@ export class TechPillComponent {
     const pills: string[] = [];
     for ( let i = 0; i < pillsArr.length ; i++) {
       const arr = pillsArr[i];
-      console.log(arr);
       for (let n= 0; n < 2 ; n++){
         if(arr[n]!= null){
           pills.push(arr[n]);

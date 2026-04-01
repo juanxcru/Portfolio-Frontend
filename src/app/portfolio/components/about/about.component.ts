@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
 import { CvInfo } from '../../store/cvinfo.store';
 import { BaseComponent } from '../base-component.component';
+import { BioData, Stack } from '../portfolio-body/portfolio-viewmodel-types';
 
 @Component({
   selector: 'app-about',
@@ -10,5 +11,7 @@ import { BaseComponent } from '../base-component.component';
 })
 export class AboutComponent extends BaseComponent{
 
-    cvinfo = input.required<CvInfo>();
+    readonly bioData = input.required<BioData>();
+    readonly stack = input.required<Stack>();
+    
 }

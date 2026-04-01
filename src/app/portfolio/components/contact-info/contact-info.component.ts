@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { SocialLinksComponent } from "../social-links/social-links.component";
 import { BaseComponent } from '../base-component.component';
-import { ContactInfo } from '../contact/contact.component';
+import { ContactInfo, SocialLinks } from '../portfolio-body/portfolio-viewmodel-types';
 
 @Component({
   selector: 'app-contact-info',
@@ -12,7 +12,7 @@ import { ContactInfo } from '../contact/contact.component';
 export class ContactInfoComponent extends BaseComponent {
 
   readonly contactInfo = input.required<ContactInfo>();
-
+  readonly socialLinks = input.required<SocialLinks>();
 
 
 }
