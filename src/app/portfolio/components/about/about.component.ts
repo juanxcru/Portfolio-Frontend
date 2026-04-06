@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { CvInfo } from '../../store/cvinfo.store';
+import { CvInfo } from '../../services/cvinfo.store';
 import { BaseComponent } from '../base-component.component';
 import { BioData, Stack } from '../portfolio-body/portfolio-viewmodel-types';
 

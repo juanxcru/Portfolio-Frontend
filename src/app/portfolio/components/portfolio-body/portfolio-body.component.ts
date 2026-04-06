@@ -6,7 +6,7 @@ import { ExperienceComponent } from "../experience/experience.component";
 import { ProjectsComponent } from "../projects/projects.component";
 import { ContactComponent } from "../contact/contact.component";
 import { FooterComponent } from '../footer/footer.component';
-import { CvInfoStore } from '../../store/cvinfo.store';
+import { CvInfoStore } from '../../services/cvinfo.store';
 import { BioData, ContactInfo, Experience, SocialLinks, Stack, Titles } from './portfolio-viewmodel-types';
 import { ErrorComponent } from "../error/error.component";
 

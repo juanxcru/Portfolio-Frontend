@@ -1,4 +1,4 @@
-import { CvInfo } from '../../store/cvinfo.store';
+import { CvInfo } from '../../services/cvinfo.store';
 
 export type ContactInfo = Pick<CvInfo, 
                         'availability' |

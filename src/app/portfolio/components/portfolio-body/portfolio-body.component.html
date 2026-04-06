@@ -1,7 +1,7 @@
 <div class="min-h-screen bg-slate-950 text-slate-200 font-display">
     <app-navbar></app-navbar>
 @if (store.state() == "loading" ) {
-  Loading. . .
+  
 }@else if(store.state() == "loaded"){
   <app-hero [stack]="stack()" [titles]="titles()" [socialLinks]="socialLinks()" ></app-hero>
   <app-about [bioData]="bioData()" [stack]="stack()" ></app-about>

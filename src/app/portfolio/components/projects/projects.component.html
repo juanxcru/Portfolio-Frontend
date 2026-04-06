@@ -7,8 +7,11 @@
       <div class="flex-1 h-px bg-slate-800"></div>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Project Cards-->
-      <app-project-card></app-project-card>
+
+      @for (project of this.projects(); track $index) {
+        <app-project-card [project]="project"></app-project-card>
+        
+      }
     </div>
   </div>
 </section>
