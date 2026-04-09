@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { computed, effect, inject, Injectable, signal } from "@angular/core";
 import { LanguageService, Locale } from "./language.service";
-import { backend } from "../../app.component";
+import { environment } from "../../../environments/environment"; 
 
 
 export interface CvInfo {
@@ -84,7 +84,7 @@ export class CvInfoStore {
         
         //from backend
         this._state.set('loading');
-        this.http.get<CvInfo>(`${backend}/info`).subscribe({
+        this.http.get<CvInfo>(`${environment.backendUrl}/info`).subscribe({
             next: (data) => {
                 this.memCacheInfo.set(locale, data);
                 this.writeCVInfoFromSessionStorage(locale, data);

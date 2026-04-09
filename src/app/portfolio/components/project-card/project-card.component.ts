@@ -11,8 +11,5 @@ export class ProjectCardComponent {
 
    readonly project = input.required<ProjectInfo>();
 
-   log(){
-    console.log(this.project());
-   }
 
 }

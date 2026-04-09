@@ -1,7 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-export const backend = 'http://localhost:8080';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],

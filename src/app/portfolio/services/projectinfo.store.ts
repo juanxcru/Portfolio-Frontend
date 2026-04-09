@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
-import { backend } from "../../app.component";
+import { environment } from "../../../environments/environment"; 
 
 
 export interface ProjectInfo {
@@ -54,7 +54,7 @@ export class ProjectInfoStore {
         try{
 
             this._state.set('loading');
-            this.http.get<ProjectInfo[]>(`${backend}/projects`).subscribe({
+            this.http.get<ProjectInfo[]>(`${environment.backendUrl}/projects`).subscribe({
                 next: (data) => {
                     this._projectsInfo.set(data);
                     sessionStorage.setItem('projects', JSON.stringify(data));
