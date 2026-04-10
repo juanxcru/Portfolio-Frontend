@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendUrl: ''
+  backendUrl: 'https://portfolio-backend-6bjt.onrender.com'
 };

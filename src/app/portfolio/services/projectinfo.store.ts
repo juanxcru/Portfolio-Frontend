@@ -56,6 +56,7 @@ export class ProjectInfoStore {
             this._state.set('loading');
             this.http.get<ProjectInfo[]>(`${environment.backendUrl}/projects`).subscribe({
                 next: (data) => {
+                    this.formatProjectTitles(data);
                     this._projectsInfo.set(data);
                     sessionStorage.setItem('projects', JSON.stringify(data));
                     this._state.set('loaded');
@@ -71,6 +72,10 @@ export class ProjectInfoStore {
             this._state.set('error');
         }
         
+    }
+
+    private formatProjectTitles(data:ProjectInfo[]) {
+        data.forEach((v) => v.name.replaceAll("-", " "));
     }
 
 }
