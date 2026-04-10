@@ -28,6 +28,8 @@ export interface UiTexts {
     downloadCV: string;
     scrollDown: string;
     scrollUp: string;
+    loadingProjects:string[];
+    loading:string[];
 
   };
 }
@@ -61,7 +63,9 @@ export const UI_TEXTS: Record<Locale, UiTexts> = {
       viewProjects: 'View Projects',
       downloadCV: 'Download CV',
       scrollDown: 'scroll down',
-      scrollUp: 'back to top'
+      scrollUp: 'back to top',
+      loadingProjects: ["Loading Projects","Fetching from Github","This maybe take a while (blame Render)", "Try reloading (F5)"],
+      loading: ["Loading","Blame Render hosting for this delay...", "Or blame me for not pay hosting hehe", "Try reloading (F5)"]
 
     },
   },
@@ -94,7 +98,9 @@ export const UI_TEXTS: Record<Locale, UiTexts> = {
       viewProjects: 'Ver Proyectos',
       downloadCV: 'Descargar CV',
       scrollDown: 'ir abajo',
-      scrollUp: 'volver al inicio'
+      scrollUp: 'volver al inicio',
+      loading: ["Cargando","Esta demora es culpa del hosting","O culpa mia por no pagar jeje", "Intenta recargar la pagina con F5"],
+      loadingProjects: ["Cargando proyectos","Leyendo desde Github","Puede que tarde (culpa del hosting)", "Intenta recargando la pagina con F5"],
     },
   },
 };

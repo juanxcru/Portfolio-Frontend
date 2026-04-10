@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
 import { environment } from "../../../environments/environment"; 
 
@@ -42,6 +42,7 @@ export class ProjectInfoStore {
 
         if(projectsInfoSaved){
             this._projectsInfo.set(JSON.parse(projectsInfoSaved));
+            this._state.set('loaded');
             return;
         }
 
@@ -61,10 +62,30 @@ export class ProjectInfoStore {
                     sessionStorage.setItem('projects', JSON.stringify(data));
                     this._state.set('loaded');
                 },
-                error: () => {
-                    console.error('error trying to get projects from BE');
-                    this._state.set('error');
+                error: (error: HttpErrorResponse) => {
+                    
+                    if(error.status === 502){
+                        console.info("Trying again, free backend jeje");
+
+                        this.http.get<ProjectInfo[]>(`${environment.backendUrl}/projects`).subscribe({
+                        next: (data) => {
+                            this.formatProjectTitles(data);
+                            this._projectsInfo.set(data);
+                            sessionStorage.setItem('projects', JSON.stringify(data));
+                            this._state.set('loaded');
+                        },
+                        error: () => {
+                            console.error('error trying again to get projects from BE');
+                            this._state.set('loading');
+                        }
+                        });
+                        return;          
+                    }
+                
+                    console.error('error trying again to get projects from BE');
+                    this._state.set('loading');
                 }
+                    
             });
             
         }catch (e){
@@ -75,7 +96,12 @@ export class ProjectInfoStore {
     }
 
     private formatProjectTitles(data:ProjectInfo[]) {
-        data.forEach((v) => v.name.replaceAll("-", " "));
+        
+        data.forEach((v) =>{
+            v.name = v.name.replaceAll("-", " ");
+            
+        } );
+        
     }
 
 }

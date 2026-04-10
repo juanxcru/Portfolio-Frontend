@@ -9,15 +9,17 @@ import { FooterComponent } from '../footer/footer.component';
 import { CvInfoStore } from '../../services/cvinfo.store';
 import { BioData, ContactInfo, Experience, SocialLinks, Stack, Titles } from './portfolio-viewmodel-types';
 import { ErrorComponent } from "../error/error.component";
+import { LoadingComponent } from "../loading/loading.component";
+import { BaseComponent } from '../base-component.component';
 
 
 @Component({
   selector: 'app-portfolio-body',
-  imports: [NavbarComponent, HeroComponent, AboutComponent, ExperienceComponent, ProjectsComponent, ContactComponent, FooterComponent, ErrorComponent],
+  imports: [NavbarComponent, HeroComponent, AboutComponent, ExperienceComponent, ProjectsComponent, ContactComponent, FooterComponent, ErrorComponent, LoadingComponent],
   templateUrl: './portfolio-body.component.html',
   styleUrl: './portfolio-body.component.css',
 })
-export class PortfolioBodyComponent {
+export class PortfolioBodyComponent extends BaseComponent {
 
   readonly store = inject(CvInfoStore);
 

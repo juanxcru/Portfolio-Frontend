@@ -6,12 +6,16 @@
       <span class="font-mono-code text-emerald-400 text-sm">/&gt;</span>
       <div class="flex-1 h-px bg-slate-800"></div>
     </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-      @for (project of this.projects(); track $index) {
-        <app-project-card [project]="project"></app-project-card>
+    @if (this.projectStore.state() == 'loading'){
+      <app-loading mode='inline' message="{{ui().actions.loadingProjects}}"></app-loading>
+    }@else if (this.projectStore.state() == 'loaded') {
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (project of this.projects(); track $index) {
+          <app-project-card [project]="project"></app-project-card>
+        
+        }
+      </div>
         
       }
-    </div>
   </div>
 </section>
