@@ -33,9 +33,9 @@
     <div class="spinner-dot"></div>
   </div>
 
-  @if (message()) {
+  @if (displayMessage()) {
     <p class="loading-message font-mono-code">
-      {{ message() }}<span class="terminal-cursor">_</span>
+      {{ displayMessage() }}<span class="terminal-cursor">_</span>
     </p>
   } @else {
     <p class="loading-message font-mono-code">

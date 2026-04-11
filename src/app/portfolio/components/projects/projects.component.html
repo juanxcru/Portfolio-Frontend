@@ -7,7 +7,7 @@
       <div class="flex-1 h-px bg-slate-800"></div>
     </div>
     @if (this.projectStore.state() == 'loading'){
-      <app-loading mode='inline' message="{{ui().actions.loadingProjects}}"></app-loading>
+      <app-loading mode='inline' [message]=ui().actions.loadingProjects></app-loading>
     }@else if (this.projectStore.state() == 'loaded') {
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         @for (project of this.projects(); track $index) {
