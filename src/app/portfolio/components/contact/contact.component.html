@@ -1,4 +1,4 @@
-<section id="contact" class="scroll-mt-24 py-24 bg-slate-900/30">
+<section id="contact" class="scroll-mt-24 py-24 bg-slate-900/30 mb-10">
   <div class="max-w-6xl mx-auto px-6">
     <div class="flex items-center gap-4 mb-12">
       <span class="font-mono-code text-emerald-400 text-sm">&lt;</span>
@@ -8,7 +8,7 @@
     </div>
     <div class="grid md:grid-cols-2 gap-12">
       <app-contact-info [contactInfo]="contactInfo()" [socialLinks]="socialLinks()"></app-contact-info>
-      <app-contact-form [email]="contactInfo().email"></app-contact-form>
+      <app-contact-form [emailInput]="contactInfo().email"></app-contact-form>
     </div>
   </div>
 </section>

@@ -32,6 +32,19 @@ export interface UiTexts {
     loading:string[];
 
   };
+  errors:{
+    formName: string;
+    formSubject: string;
+    formEmail: string;
+    formMessage: string;
+    required: string;
+    maxlength: string;
+    minlength: string;
+    forbiddenChars: string;
+    email: string;
+    invalidFormat: string;
+
+  }
 }
 
 export const UI_TEXTS: Record<Locale, UiTexts> = {
@@ -68,6 +81,18 @@ export const UI_TEXTS: Record<Locale, UiTexts> = {
       loading: ["Loading","Blame Render hosting for this delay...", "Or blame me for not pay hosting hehe", "Try reloading (F5)"]
 
     },
+    errors: {
+      formName: 'Field name',
+      formSubject: 'Field subject',
+      formEmail: 'Field email',
+      formMessage: 'Field message',
+      required: 'is required',
+      maxlength: 'is too long',
+      minlength: 'is too short',
+      forbiddenChars: 'has invalid characters',
+      email : 'has to be an email',
+      invalidFormat:  'has invalid format'
+    },
   },
   es: {
     sections: {
@@ -102,6 +127,19 @@ export const UI_TEXTS: Record<Locale, UiTexts> = {
       loading: ["Cargando","Esta demora es culpa del hosting","O culpa mia por no pagar jeje", "Intenta recargar la pagina con F5"],
       loadingProjects: ["Cargando proyectos","Leyendo desde Github","Puede que tarde (culpa del hosting)", "Intenta recargando la pagina con F5"],
     },
+    errors: {
+      formName: 'El campo nombre',
+      formSubject: 'El campo asunto',
+      formEmail: 'El campo correo',
+      formMessage: 'El campo mensaje',
+      required: 'es obligatorio',
+      maxlength: 'es muy largo',
+      minlength: 'es muy corto',
+      forbiddenChars: 'tiene caracteres invalidos',
+      email: 'tiene que ser un email',
+      invalidFormat: 'formato invalido'
+    },
+    
   },
 };
 

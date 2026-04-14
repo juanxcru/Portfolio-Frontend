@@ -1,7 +1,0 @@
-@if (projects$ | async; as projects) {
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-  @for (project of projects; track project.id) {
-  <app-project-card [project]="project" />
-  }
-</div>
-}
