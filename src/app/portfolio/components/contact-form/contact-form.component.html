@@ -49,10 +49,22 @@
       ></textarea>
     </div>
     <button
+      [disabled]="this.contactForm.invalid || this.sending()"
       type="submit"
       class="w-full py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 rounded-lg font-semibold hover:opacity-90 transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2"
     >
-      <span>{{ui().actions.sendMessage}}</span>
+      @if (this.emailSent()) {
+        <span>{{ui().actions.emailSent}}</span>
+      }@else if (this.sending()){
+
+        <div class="relative w-7 h-7 overflow-hidden flex items-center justify-center shrink-0">
+          <div class="scale-[0.25] origin-center flex-shrink-0">
+            <app-loading mode="inline" [message]=ui().actions.loadingEmail></app-loading>
+          </div>
+        </div>
+      }@else {
+        <span>{{ui().actions.sendMessage}}</span>
+      }
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           stroke-linecap="round"

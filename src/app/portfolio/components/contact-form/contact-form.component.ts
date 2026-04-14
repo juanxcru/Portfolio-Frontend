@@ -1,19 +1,22 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { BaseComponent } from '../base-component.component';
 import { EmailService } from '../../services/email.service';
 import { FormBuilder, ReactiveFormsModule, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { LoadingComponent } from "../loading/loading.component";
 
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
   styleUrl: './contact-form.component.css',
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule, LoadingComponent]
 })
 export class ContactFormComponent extends BaseComponent {
   readonly emailInput = input.required();
   readonly emailService = inject(EmailService);
 
   private formBuilder = inject(FormBuilder);
+  protected emailSent = signal(false);
+  protected sending = signal(false);
 
   contactForm = this.formBuilder.group({
     name: ['', [Validators.required, this.noNewLinesValidator()]],
@@ -30,11 +33,28 @@ export class ContactFormComponent extends BaseComponent {
   }
 
 
-  protected onSubmit() {
+  protected async onSubmit() {
 
+  
     if(!this.contactForm.invalid){
-      const form = document.getElementsByTagName('form');
-      this.emailService.sendEmail(form.namedItem('form'));
+      try {
+        this.sending.set(true);
+        const form = document.getElementsByTagName('form');
+
+        await this.emailService.sendEmail(form.namedItem('form'));
+
+        this.emailSent.set(true);
+        this.contactForm.reset();
+        setTimeout(()=>{
+          this.emailSent.set(false);
+        }, 1000);
+
+
+      } catch (error) {
+
+      } finally {
+        this.sending.set(false);
+      }
     }
 
   }
@@ -44,6 +64,8 @@ export class ContactFormComponent extends BaseComponent {
     const controls = this.contactForm.controls;
 
     const errorUITexts = this.ui().errors;
+
+
     Object.keys(controls).forEach(key => {
 
     const control = controls[key as keyof typeof controls];

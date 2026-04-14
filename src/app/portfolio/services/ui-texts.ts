@@ -30,6 +30,8 @@ export interface UiTexts {
     scrollUp: string;
     loadingProjects:string[];
     loading:string[];
+    loadingEmail: string[];
+    emailSent: string;
 
   };
   errors:{
@@ -78,7 +80,9 @@ export const UI_TEXTS: Record<Locale, UiTexts> = {
       scrollDown: 'scroll down',
       scrollUp: 'back to top',
       loadingProjects: ["Loading Projects","Fetching from Github","This maybe take a while (blame Render)", "Try reloading (F5)"],
-      loading: ["Loading","Waking up the server (free tier 😅)", "Blame me for not pay hosting hehe", "This site has been built within Angular + SpringBoot"]
+      loading: ["Loading","Waking up the server (free tier 😅)", "Blame me for not pay hosting hehe", "This site has been built within Angular + SpringBoot"],
+      loadingEmail: ["Sending message..."],
+      emailSent: "Message succesfully sent 👍"
 
     },
     errors: {
@@ -126,6 +130,9 @@ export const UI_TEXTS: Record<Locale, UiTexts> = {
       scrollUp: 'volver al inicio',
       loading: ["Cargando","Despertando el servidor (free tier 😅)...","¿Sabías que este sitio usa Angular + Spring Boot?", "¿Sabías que soy scuba diver? 🤿", "Intenta recargar la pagina con F5"],
       loadingProjects: ["Cargando proyectos","Leyendo desde Github","Puede que tarde (culpa del hosting)", "Intenta recargando la pagina con F5"],
+      loadingEmail: ["Enviando mensaje..."],
+      emailSent: "¡Mensaje enviado! 👍"
+
     },
     errors: {
       formName: 'El campo nombre',
