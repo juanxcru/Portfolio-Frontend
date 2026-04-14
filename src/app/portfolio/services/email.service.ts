@@ -13,10 +13,10 @@ export class EmailService {
     })
     .then(
     () => {
-      console.log('SUCCESS!');
+      
     },
     (error) => {
-      console.log('FAILED...', (error as EmailJSResponseStatus).text);
+      console.error("Error sending email")
     },
   );
   }
