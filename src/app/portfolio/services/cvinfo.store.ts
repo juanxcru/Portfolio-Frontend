@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { computed, effect, inject, Injectable, signal } from "@angular/core";
 import { LanguageService, Locale } from "./language.service";
 import { environment } from "../../../environments/environment"; 
+import { map } from "rxjs";
 
 
 export interface CvInfo {
@@ -82,23 +83,53 @@ export class CvInfoStore {
             return;
         }
         
+        
         //from backend
         this._state.set('loading');
-        this.http.get<CvInfo>(`${environment.backendUrl}/info`).subscribe({
-            next: (data) => {
-                this.memCacheInfo.set(locale, data);
-                this.writeCVInfoFromSessionStorage(locale, data);
-                this._cvInfo.set(data);
-                this._state.set('loaded');
-            },
-            error: () => {
-                console.error('error trying to get info from BE');
+        //this.http.get<CvInfo>(`${environment.backendUrl}/info`).subscribe({
+        this.http.get('assets/cvinfo.json').pipe(
+             map( (data) => this.mapCvInfo(data, locale))
+            ).subscribe({
+                next: (resp: CvInfo) => {
+                    this.memCacheInfo.set(locale, resp);
+                    this.writeCVInfoFromSessionStorage(locale, resp);
+                    this._cvInfo.set(resp);
+                    this._state.set('loaded');
+                },
+            error: (error) => {
+                console.error('error trying to get info from BE', error);
                 this._state.set('error');
             }
         });
 
         
 
+    }
+
+    private mapCvInfo(json: any, locale:Locale):CvInfo{
+        return {
+            title: json.title[locale],
+            subtitle: json.subtitle[locale],
+            availability: json.availability[locale],
+            avail_short: json.avail_short[locale],
+            cover_letter: json.subtitle[locale], 
+            location: json.location[locale],
+            email: json.email,
+            linkedin: json.linkedin,
+            github: json.github,
+            stack: { ...json.stack }, 
+            bio1: json.bio1[locale],
+            bio2: json.bio2[locale],
+            bio3: json.bio3[locale],
+            experience: json.experience.map((exp: any) => ({
+                company: exp.company,
+                role: exp.role[locale],
+                from: exp.from,
+                to: exp.to,
+                description: exp.description[locale],
+                bullets: exp.bullets
+            }))
+        };
     }
 
 
