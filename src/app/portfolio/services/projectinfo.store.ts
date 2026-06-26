@@ -55,7 +55,7 @@ export class ProjectInfoStore {
         try{
 
             this._state.set('loading');
-            this.http.get<ProjectInfo[]>(`${environment.backendUrl}/projects`).subscribe({
+            this.http.get<ProjectInfo[]>(`${environment.serverFx}/projects`).subscribe({
                 next: (data) => {
                     this.formatProjectTitles(data);
                     this._projectsInfo.set(data);
@@ -67,7 +67,7 @@ export class ProjectInfoStore {
                     if(error.status === 502){
                         console.info("Trying again, free backend jeje");
 
-                        this.http.get<ProjectInfo[]>(`${environment.backendUrl}/projects`).subscribe({
+                        this.http.get<ProjectInfo[]>(`${environment.serverFx}/projects`).subscribe({
                         next: (data) => {
                             this.formatProjectTitles(data);
                             this._projectsInfo.set(data);
