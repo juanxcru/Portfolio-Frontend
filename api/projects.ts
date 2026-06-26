@@ -2,8 +2,8 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Redis } from '@upstash/redis';
 
 const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+  url: process.env['UPSTASH_REDIS_REST_URL']!,
+  token: process.env['UPSTASH_REDIS_REST_TOKEN']!,
 });
 
 const GITHUB_API = 'https://api.github.com';
@@ -17,9 +17,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const headers: Record<string, string> = {
       Accept: 'application/vnd.github+json',
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      Authorization: `Bearer ${process.env['GITHUB_TOKEN']}`,
       'X-GitHub-Api-Version': '2022-11-28',
-      'User-Agent': process.env.GITHUB_AGENT!,
+      'User-Agent': process.env['GITHUB_AGENT']!,
     };
 
     if (cachedEtag) {
@@ -27,7 +27,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const githubRes = await fetch(
-      `${GITHUB_API}/users/${process.env.GITHUB_USERNAME}/repos?per_page=30&sort=updated`,
+      `${GITHUB_API}/users/${process.env['GITHUB_USERNAME']}/repos?per_page=30&sort=updated`,
       { headers }
     );
 
