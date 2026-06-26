@@ -13,7 +13,7 @@ const CACHE_KEY_ETAG = 'github:etag';
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const cachedEtag = await redis.get<string>(CACHE_KEY_ETAG);
-    const cachedRepos = await redis.get<string>(CACHE_KEY_REPOS);
+    const cachedRepos = await redis.get<any[]>(CACHE_KEY_REPOS);
 
     const headers: Record<string, string> = {
       Accept: 'application/vnd.github+json',
@@ -30,14 +30,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       `${GITHUB_API}/users/${process.env['GITHUB_USERNAME']}/repos?per_page=30&sort=updated`,
       { headers }
     );
-
+    
     if (githubRes.status === 304 && cachedRepos) {
-      return res.status(200).json(JSON.parse(cachedRepos));
+      return res.status(200).json(cachedRepos);
     }
 
     if (!githubRes.ok) {
       // devolvemos cache. si existe, sino vacio.
-      if (cachedRepos) return res.status(200).json(JSON.parse(cachedRepos));
+      if (cachedRepos) return res.status(200).json(cachedRepos);
       return res.status(502).json([]);
     }
 
@@ -56,7 +56,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     //cacheamos
     const newEtag = githubRes.headers.get('etag');
     // dura una semana (604800s)
-    await redis.set(CACHE_KEY_REPOS, JSON.stringify(filtered), { ex: 604800 });
+    await redis.set(CACHE_KEY_REPOS, filtered, { ex: 604800 });
     if (newEtag) await redis.set(CACHE_KEY_ETAG, newEtag, { ex: 604800 });
 
     return res.status(200).json(filtered);
